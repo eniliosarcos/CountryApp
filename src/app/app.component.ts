@@ -23,6 +23,7 @@ export class AppComponent {
   selectOption(){
     this.countrySelected = this.myForm.get('country')?.value;
     this.countryServices.country = this.countrySelected;
+    console.log(this.countryServices.country)
   }
 
   title = 'CountriesApp';

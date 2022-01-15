@@ -1,6 +1,36 @@
-<ng-container *ngIf="country !== undefined">
-  <pre>
-    {{country | json}}
-  </pre>
+<ng-container *ngIf="country; else elseTemplate">
+  <div class="row">
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img class="img-thumbnail" [src]="country.flags.png" alt="">
+    </div>
+    <div class="col-8">
+      <h3>Informacion</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Nombre oficial: </strong>
+          <span>{{ country.translations['spa'].official }}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Poblacion: </strong>
+          <span>{{country.population | number}}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Zona horaria: </strong>
+          <span>{{country.timezones}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="row mt-4 description-country">
+      <h3 class="mb-4">Informacion adicional </h3>
+      <span class="description-country-span">
+        {{ country.translations['spa'].common }} es un pais que pertenece a la region de
+        {{ country.region }} y esta ubicado en la subregion de {{country.subregion}}. La capital de este pais es {{country.capital}}.
+      </span>
+    </div>
+  </div>
 </ng-container>
+<ng-template #elseTemplate>
+    Actualmente estas viendo tu ubicacion. Selecciona un pais para cargar la descripcion de ese pais.
+</ng-template>
 
