@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { tap, map } from 'rxjs';
+import { CountryResponse } from '../core/interfaces/contries.interface';
+import { CountryService } from '../core/services/country.service';
+
+
 
 @Component({
   selector: 'app-description',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DescriptionComponent implements OnInit {
 
-  constructor() { }
+  // country!:CountryResponse;
+
+  get country(){
+    return this.countryService.country;
+  }
+
+  constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
+
   }
 
 }

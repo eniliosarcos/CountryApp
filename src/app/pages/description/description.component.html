@@ -1,1 +1,6 @@
-<p>description works!</p>
+<ng-container *ngIf="country !== undefined">
+  <pre>
+    {{country | json}}
+  </pre>
+</ng-container>
+

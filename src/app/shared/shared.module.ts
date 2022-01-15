@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { MenuComponent } from './menu/menu.component';
 import { RouterModule } from '@angular/router';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
   declarations: [
-    MenuComponent
+    MenuComponent,
+    MapComponent
   ],
   exports:[
-    MenuComponent
+    MenuComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,

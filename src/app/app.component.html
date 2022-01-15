@@ -1,32 +1,26 @@
-<!-- <div class="row container mt-4">
-  <h1>Explorador de paises</h1>
-
-  <div class="col-12">
-    <select name="" id="">
-      <option value="">1</option>
-      <option value="">2</option>
-    </select>
+<div class="container mt-4">
+  <div class="row mb-4">
+    <h1>Explorador de paises</h1>
   </div>
-  <div class="col-12">
-
-  </div>
-</div> -->
-
-<div class="container">
-  <h1>Explorador de paises</h1>
   <div class="row">
     <div class="col">
-      <div class="row">
-        <select name="" id="" class="block">
-          <option value="">1</option>
-          <option value="">2</option>
-        </select>
-      </div>
-      mapa
+      <form [formGroup]="myForm">
+        <div class="row">
+          <ng-container *ngIf="countries$ | async as countries">
+            <select class="form-label" formControlName="country" (change)="selectOption()">
+              <option value="">Elige un pais...</option>
+              <option *ngFor="let country of countries" class="form-control" [ngValue]="country">{{country.name.common}}</option>
+            </select>
+          </ng-container>
+        </div>
+      </form>
+      <app-map [country]="countrySelected"></app-map>
     </div>
     <div class="col">
       <app-menu></app-menu>
-      <router-outlet></router-outlet>
+      <div class="row country-info">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
