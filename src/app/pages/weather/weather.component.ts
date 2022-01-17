@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map, switchMap, tap } from 'rxjs';
+import { CountryService } from '../core/services/country.service';
+import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-weather',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
-  constructor() { }
+  weatherData$ = this.countryService.country$.pipe(
+    switchMap(resp => this.weatherService.getWeatherData(resp.latlng[0],resp.latlng[1]))
+    // map(({articles}) => articles)
+  )
+
+  constructor(private countryService: CountryService, private weatherService:WeatherService) { }
 
   ngOnInit(): void {
   }

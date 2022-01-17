@@ -1,1 +1,33 @@
-<p>weather works!</p>
+<ng-container *ngIf="weatherData$ | async as weatherData; else elseTemplate">
+  <div class="row">
+    <div class="col">
+      <h1>Ciudad: {{weatherData.name}}</h1>
+     <h3> Clima: {{weatherData.weather[0].main}}</h3>
+     <h3> Descripcion: {{weatherData.weather[0].description}}</h3>
+     <hr>
+
+     <div class="row">
+       <div class="col">
+         <h2>Temperatura Actual {{weatherData.main.temp}}°C.</h2>
+         <h2>minima: {{weatherData.main.temp_min}}°C.</h2>
+         <h2>maxima: {{weatherData.main.temp_max}}°C.</h2>
+       </div>
+     </div>
+
+
+      <hr>
+
+      <h4>Humedad: {{weatherData.main.humidity}}</h4>
+      <h4>Velocidad del viento: {{weatherData.wind.speed}}</h4>
+    </div>
+
+  </div>
+
+</ng-container>
+<ng-template #elseTemplate>
+  <p>Selecciona un pais para ver informacion del clima.</p>
+
+</ng-template>
+
+
+
