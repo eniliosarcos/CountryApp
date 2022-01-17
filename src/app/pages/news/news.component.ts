@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { startWith, switchMap, take, tap, map } from 'rxjs/operators';
+import { CountryResponse } from '../core/interfaces/contries.interface';
+import { CountryService } from '../core/services/country.service';
+import { NewsResponse } from './interfaces/news.interface';
+import { NewsService } from './services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  news$ = this.countryService.country$.pipe(
+    switchMap(resp => this.newService.getNews(resp.translations['spa'].common)),
+    map(({articles}) => articles)
+  )
+
+  constructor(private newService: NewsService, private countryService: CountryService) { }
 
   ngOnInit(): void {
+  }
+
+  openNewInTab(newUrl: string): void{
+    window.open(newUrl,  '_blank');
   }
 
 }

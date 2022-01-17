@@ -1,1 +1,38 @@
-<p>news works!</p>
+
+<ng-container *ngIf="news$ | async as news; else elseTemplate">
+  <div class="row">
+    <div class="col-12 news-container">
+      <ng-container *ngFor="let new of news">
+        <div class="row new-container" (click)="openNewInTab(new.url)">
+          <div class="new-container2">
+            <div class="col-3">
+              <img src="{{new.urlToImage}}" alt="" class="img-thumbnail">
+            </div>
+            <div class="col-9 title-text">
+              <div class="row">
+                <div class="col-12">
+                  <strong>Autor: </strong>
+                  <span>{{new.author || 'Anonimo'}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <strong>Titulo: </strong>
+                  <span>{{new.title}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 description-text">
+              <strong>Descripcion: </strong>
+              <span>{{new.description}}</span>
+              <!-- <a href="{{new.url}}" target="_blank">{{new.url}}</a> -->
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <p>news works!</p>
+</ng-template>

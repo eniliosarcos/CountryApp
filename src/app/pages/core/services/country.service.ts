@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CountryResponse } from '../interfaces/contries.interface';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { CountryResponse } from '../interfaces/contries.interface';
 })
 export class CountryService {
 
-  country!:CountryResponse;
+  country$ = new Subject<CountryResponse>();
 
   constructor(private http: HttpClient) {
   }

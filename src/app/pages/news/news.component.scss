@@ -1,0 +1,32 @@
+.news-container {
+  overflow: auto;
+  height: 525px;
+}
+.new-container {
+  padding: 5px;
+}
+.new-container2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  box-shadow: 1px 2px 4px 2px rgb(0 0 0 / 42%);
+  padding: 8px;
+  cursor: pointer;
+}
+
+.title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.description-text {
+  color: gray;
+  font-size: 12px;
+}
+
+strong {
+  color: black;
+}
