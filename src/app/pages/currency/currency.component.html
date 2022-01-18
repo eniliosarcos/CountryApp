@@ -1,41 +1,38 @@
-<ng-container
-  *ngIf="
-    {
-      currenciesName: currenciesName$ | async,
-      currencies: currencies$ | async,
-      currenciesConverted: currenciesConverted$ | async
-    } as state;
-    else elseTemplate
-  "
->
+<ng-container *ngIf="currenciesName$ | async as currenciesName; else elseTemplate">
   <div class="row">
     <div
       class="col-12 mb-4"
-      *ngFor="let currencyName of state?.currenciesName; let i = index"
+      *ngFor="let currencyName of currenciesName; let i = index"
     >
-      <h3>{{ currencyName }} - {{ state?.currencies![i] }}</h3>
+    <ng-container *ngIf="currencies$ | async as currencies">
+      <h3>{{ currencyName }} - {{ currencies![i] }}</h3>
       <div class="row">
         <div class="col exchange-info-text" >
           <span>Valor al cambio de esta moneda</span>
         </div>
       </div>
-      <div class="row mt-3 exchange-row">
-        <div class="col exchange-value-text">
-          <strong>{{ state?.currencies![i] }}</strong
-          >: 1
+      <ng-container *ngIf="currenciesConverted$ | async as currenciesConverted">
+        <div class="row mt-3 exchange-row">
+          <div class="col exchange-value-text">
+            <strong>{{ currencies![i] }}</strong
+            >: 1
+          </div>
+          <div class="col exchange-value-text">
+            <strong>USD</strong>: {{currenciesConverted[i][0]}}
+          </div>
         </div>
-        <div class="col exchange-value-text">
-          <strong>USD</strong>: {{state?.currenciesConverted![i][0]}}
+        <div class="row mt-2 exchange-row">
+          <div class="col exchange-value-text">
+            <strong>USD</strong>: 1
+          </div>
+          <div class="col exchange-value-text">
+            <strong>{{ currencies![i] }}</strong>: {{currenciesConverted[i][1]}}
+          </div>
         </div>
-      </div>
-      <div class="row mt-2 exchange-row">
-        <div class="col exchange-value-text">
-          <strong>USD</strong>: 1
-        </div>
-        <div class="col exchange-value-text">
-          <strong>{{ state?.currencies![i] }}</strong>: {{state?.currenciesConverted![i][1]}}
-        </div>
-      </div>
+      </ng-container>
+
+    </ng-container>
+
     </div>
   </div>
 </ng-container>

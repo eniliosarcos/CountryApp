@@ -2,26 +2,16 @@
   <div class="row mb-4">
     <h1>Explorador de paises</h1>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="countries$ | async as countries">
     <div class="col-6">
       <form [formGroup]="myForm">
         <div class="row">
-          <ng-container *ngIf="countries$ | async as countries">
-            <select
-              class="form-label"
-              formControlName="country"
-              (change)="selectOption()"
-            >
-              <option value="">Elige un pais...</option>
-              <option
-                *ngFor="let country of countries"
-                class="form-control"
-                [ngValue]="country"
-              >
+            <select class="form-select mb-4" formControlName="country" (change)="selectOption()">
+              <option value="">Selecciona un pais...</option>
+              <option *ngFor="let country of countries" [ngValue]="country">
                 {{ country.name.common }}
               </option>
             </select>
-          </ng-container>
         </div>
       </form>
       <app-map [country]="countrySelected"></app-map>

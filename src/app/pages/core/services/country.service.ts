@@ -8,7 +8,7 @@ import { CountryResponse } from '../interfaces/contries.interface';
 })
 export class CountryService {
 
-  country$ = new Subject<CountryResponse>();
+  country$ = new BehaviorSubject<CountryResponse | null>(null);
 
   constructor(private http: HttpClient) {
   }

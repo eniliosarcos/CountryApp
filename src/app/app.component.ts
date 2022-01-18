@@ -22,7 +22,6 @@ export class AppComponent {
 
   selectOption(){
     this.countrySelected = this.myForm.get('country')?.value;
-    console.log(this.countrySelected)
     this.countryServices.country$.next(this.countrySelected);
   }
 

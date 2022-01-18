@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { filter, map, tap } from 'rxjs';
 import { CountryService } from '../../core/services/country.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrencyService {
-
-  defaultCurrency = 'USD';
-
   get country$(){
-    return this.countryService.country$;
+    return this.countryService.country$.pipe(
+      filter(country => !!Boolean(country)),
+    );
   }
 
   constructor(private http: HttpClient, private countryService: CountryService) { }
@@ -27,7 +26,7 @@ export class CurrencyService {
 
   getCurrencyNames(currency: string){
     return this.countryService.country$.pipe(
-      map(country => this.read_prop(country.currencies!,currency))
+      map(country => this.read_prop(country!.currencies!,currency))
     )
   }
 

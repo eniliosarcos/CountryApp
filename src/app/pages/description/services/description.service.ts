@@ -7,7 +7,7 @@ import { CountryService } from '../../core/services/country.service';
 })
 export class DescriptionService {
 
-  get country$(){
+  get descriptionCountry$(){
     return this.countryService.country$;
   }
 

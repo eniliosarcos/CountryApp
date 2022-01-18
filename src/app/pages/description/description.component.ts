@@ -13,13 +13,13 @@ import { DescriptionService } from './services/description.service';
 })
 export class DescriptionComponent implements OnInit {
 
-
-  country$ = this.descriptionService.country$;
+  descriptionCountry$ = this.descriptionService.descriptionCountry$.pipe(
+    // tap(x => console.log(x))
+  );
 
   constructor(private descriptionService: DescriptionService, private countryService: CountryService) { }
 
   ngOnInit(): void {
-
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, switchMap, tap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { CountryService } from '../core/services/country.service';
 import { WeatherService } from './services/weather.service';
 
@@ -11,7 +11,8 @@ import { WeatherService } from './services/weather.service';
 export class WeatherComponent implements OnInit {
 
   weatherData$ = this.countryService.country$.pipe(
-    switchMap(resp => this.weatherService.getWeatherData(resp.latlng[0],resp.latlng[1]))
+    filter(country => !!Boolean(country)),
+    switchMap(resp => this.weatherService.getWeatherData(resp!.latlng[0],resp!.latlng[1]))
     // map(({articles}) => articles)
   )
 
