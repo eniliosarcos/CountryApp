@@ -1,11 +1,13 @@
 .map-container {
-  height: 550px;
-}
-
-.map-frame {
-  height: 550px;
+  position: relative;
+  height: calc(1.5vh + 60vw);
+  max-height: 500px;
 }
 
 #map {
-  height: 550px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  border: 1px solid brown;
 }

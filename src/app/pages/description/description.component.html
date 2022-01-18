@@ -1,5 +1,5 @@
-<ng-container *ngIf="country$|async as country; else elseTemplate">
-  <div class="row">
+<ng-container *ngIf="descriptionCountry$ | async as country; else elseTemplate">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
     <div class="col-4">
       <h3>Bandera</h3>
       <img class="img-thumbnail" [src]="country.flags.png" alt="">

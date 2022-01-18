@@ -13,13 +13,11 @@ import { DescriptionService } from './services/description.service';
 })
 export class DescriptionComponent implements OnInit {
 
+  descriptionCountry$ = this.descriptionService.descriptionCountry$;
 
-  country$ = this.descriptionService.country$;
-
-  constructor(private descriptionService: DescriptionService, private countryService: CountryService) { }
+  constructor(private descriptionService: DescriptionService) { }
 
   ngOnInit(): void {
-
   }
 
 }

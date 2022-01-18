@@ -1,1 +1,41 @@
-<p>currency works!</p>
+<ng-container *ngIf="currenciesName$ | async as currenciesName; else elseTemplate">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
+    <div
+      class="col-12 mb-4"
+      *ngFor="let currencyName of currenciesName; let i = index"
+    >
+    <ng-container *ngIf="currencies$ | async as currencies">
+      <h3>{{ currencyName }} - {{ currencies![i] }}</h3>
+      <div class="row">
+        <div class="col exchange-info-text" >
+          <span>Valor al cambio de esta moneda</span>
+        </div>
+      </div>
+      <ng-container *ngIf="currenciesConverted$ | async as currenciesConverted">
+        <div class="row mt-3 exchange-row">
+          <div class="col exchange-value-text">
+            <strong>{{ currencies![i] }}</strong
+            >: 1
+          </div>
+          <div class="col exchange-value-text">
+            <strong>USD</strong>: {{currenciesConverted[i][0]}}
+          </div>
+        </div>
+        <div class="row mt-2 exchange-row">
+          <div class="col exchange-value-text">
+            <strong>USD</strong>: 1
+          </div>
+          <div class="col exchange-value-text">
+            <strong>{{ currencies![i] }}</strong>: {{currenciesConverted[i][1]}}
+          </div>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+    </div>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  Selecciona un pais para ver la informacion del cambio de la moneda.
+</ng-template>

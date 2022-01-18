@@ -6,7 +6,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import * as L from 'leaflet';
-import { CountryResponse } from 'src/app/pages/core/interfaces/contries.interface';
 
 @Component({
   selector: 'app-map',
@@ -14,7 +13,7 @@ import { CountryResponse } from 'src/app/pages/core/interfaces/contries.interfac
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnChanges, AfterViewInit {
-  @Input() country!:CountryResponse;
+  @Input() latlng!:number[];
 
   private map:any;
 
@@ -22,13 +21,12 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.country){
-      this.changeView(this.country.latlng[0],this.country.latlng[1])
+    if(this.latlng){
+      this.changeView(this.latlng[0],this.latlng[1])
     }
   }
 
   changeView(lat:any,lng:any) {
-    // this.map.panTo(new L.LatLng(lat, lng));
     this.map.flyTo(new L.LatLng(lat, lng),this.map.getZoom(),{
       "animate":true,
       "pan":{
@@ -50,9 +48,13 @@ export class MapComponent implements OnChanges, AfterViewInit {
 
     this.map = L.map('map').setView([latitude, longitude], 5);
 
+
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>contributors'
      } ).addTo(this.map);
+
+     L.circle([latitude, longitude], 30000).addTo(this.map)
  }
 
 }
