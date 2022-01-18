@@ -1,5 +1,5 @@
 <ng-container *ngIf="weatherData$ | async as weatherData; else elseTemplate">
-  <div class="row">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
     <div class="col">
       <h1>Ciudad: {{weatherData.name}}</h1>
      <h3> Clima: {{weatherData.weather[0].main}}</h3>

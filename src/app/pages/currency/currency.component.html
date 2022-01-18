@@ -1,5 +1,5 @@
 <ng-container *ngIf="currenciesName$ | async as currenciesName; else elseTemplate">
-  <div class="row">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
     <div
       class="col-12 mb-4"
       *ngFor="let currencyName of currenciesName; let i = index"

@@ -11,7 +11,7 @@ import { Article, NewsResponse } from '../interfaces/news.interface';
 })
 export class NewsService {
 
-  get country$(){
+  get newsCountry$(){
     return this.countryService.country$;
   }
 

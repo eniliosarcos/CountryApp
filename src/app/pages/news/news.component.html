@@ -1,6 +1,6 @@
 
 <ng-container *ngIf="news$ | async as news; else elseTemplate">
-  <div class="row">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
     <div class="col-12 news-container">
       <ng-container *ngFor="let new of news">
         <div class="row new-container" (click)="openNewInTab(new.url)">

@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4 animate__animated animate__delay-0.8s animate__fadeIn">
   <div class="row mb-4">
     <h1>Explorador de paises</h1>
   </div>
@@ -14,7 +14,7 @@
             </select>
         </div>
       </form>
-      <app-map [country]="countrySelected"></app-map>
+      <app-map [latlng]="(countrySelected && countrySelected.latlng)"></app-map>
     </div>
     <div class="col-6">
       <div class="row">

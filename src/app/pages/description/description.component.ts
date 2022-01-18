@@ -13,11 +13,9 @@ import { DescriptionService } from './services/description.service';
 })
 export class DescriptionComponent implements OnInit {
 
-  descriptionCountry$ = this.descriptionService.descriptionCountry$.pipe(
-    // tap(x => console.log(x))
-  );
+  descriptionCountry$ = this.descriptionService.descriptionCountry$;
 
-  constructor(private descriptionService: DescriptionService, private countryService: CountryService) { }
+  constructor(private descriptionService: DescriptionService) { }
 
   ngOnInit(): void {
   }

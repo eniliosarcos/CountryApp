@@ -12,13 +12,13 @@ import { NewsService } from './services/news.service';
 })
 export class NewsComponent implements OnInit {
 
-  news$ = this.countryService.country$.pipe(
+  news$ = this.newService.newsCountry$.pipe(
     filter(country => !!Boolean(country)),
     switchMap(resp => this.newService.getNews(resp!.translations['spa'].common)),
     map(({articles}) => articles)
   )
 
-  constructor(private newService: NewsService, private countryService: CountryService) { }
+  constructor(private newService: NewsService) { }
 
   ngOnInit(): void {
   }
