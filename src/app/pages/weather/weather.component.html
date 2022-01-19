@@ -1,33 +1,47 @@
 <ng-container *ngIf="weatherData$ | async as weatherData; else elseTemplate">
-  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
-    <div class="col">
-      <h1>Ciudad: {{weatherData.name}}</h1>
-     <h3> Clima: {{weatherData.weather[0].main}}</h3>
-     <h3> Descripcion: {{weatherData.weather[0].description}}</h3>
-     <hr>
-
-     <div class="row">
-       <div class="col">
-         <h2>Temperatura Actual {{weatherData.main.temp}}°C.</h2>
-         <h2>minima: {{weatherData.main.temp_min}}°C.</h2>
-         <h2>maxima: {{weatherData.main.temp_max}}°C.</h2>
-       </div>
-     </div>
-
-
-      <hr>
-
-      <h4>Humedad: {{weatherData.main.humidity}}</h4>
-      <h4>Velocidad del viento: {{weatherData.wind.speed}}</h4>
+  <div
+    class="row pb-2 animate__animated animate__delay-0.8s animate__fadeInRight h-100"
+  >
+    <div class="container">
+      <div class="col p-2 border border-dark h-100">
+        <div class="col">
+          <h1>Ciudad: {{ weatherData.name }}</h1>
+          <h4>Clima: {{ weatherData.weather[0].main }}</h4>
+          <h4>
+            Descripcion: {{ weatherData.weather[0].description
+            }}<img
+              [src]="iconWeather(weatherData.weather[0].icon)"
+              alt=""
+              width="40px"
+              height="40px"
+            />
+          </h4>
+        </div>
+        <hr />
+        <div class="col">
+          <h1>Temperatura {{ weatherData.main.temp }}°C</h1>
+          <h4>minima: {{ weatherData.main.temp_min }}°C</h4>
+          <h4>maxima: {{ weatherData.main.temp_max }}°C</h4>
+        </div>
+        <hr />
+        <div class="col">
+          <h5>Humedad: {{ weatherData.main.humidity }}%</h5>
+          <h5>Velocidad del viento: {{ weatherData.wind.speed }} m/s</h5>
+        </div>
+      </div>
     </div>
-
   </div>
-
 </ng-container>
 <ng-template #elseTemplate>
-  <p>Selecciona un pais para ver informacion del clima.</p>
-
+  <div
+    class="row pb-2 animate__animated animate__delay-0.8s animate__fadeIn h-100"
+  >
+    <div class="container">
+      <div class="col p-3 border border-dark align-items-center d-flex h-100">
+        <p class="text-center text-secondary fs-5">
+          Selecciona un pais para ver la informacion del clima.
+        </p>
+      </div>
+    </div>
+  </div>
 </ng-template>
-
-
-
