@@ -1,36 +1,48 @@
 <ng-container *ngIf="descriptionCountry$ | async as country; else elseTemplate">
-  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
-    <div class="col-4">
-      <h3>Bandera</h3>
-      <img class="img-thumbnail" [src]="country.flags.png" alt="">
+    <div class="row pb-2 animate__animated animate__delay-0.8s animate__fadeIn h-100">
+      <div class="container">
+        <div class="col p-2 border border-dark h-100" >
+          <div class="row">
+            <div class="col-4">
+              <h3>Bandera</h3>
+              <img class="img-thumbnail" [src]="country.flags.png" alt="">
+            </div>
+            <div class="col-8">
+              <h3>Informacion</h3>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Nombre oficial: </strong>
+                  <span>{{ country.translations['spa'].official }}</span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Poblacion: </strong>
+                  <span>{{country.population | number}}</span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Zona horaria: </strong>
+                  <span>{{country.timezones}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row mt-4 description-country">
+            <h3 class="mb-4">Informacion adicional </h3>
+            <span class="description-country-span">
+              {{ country.translations['spa'].common }} es un pais que pertenece a la region de
+              {{ country.region }} y esta ubicado en la subregion de {{country.subregion}}. La capital de este pais es
+              {{country.capital}}.
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-8">
-      <h3>Informacion</h3>
-      <ul class="list-group">
-        <li class="list-group-item">
-          <strong>Nombre oficial: </strong>
-          <span>{{ country.translations['spa'].official }}</span>
-        </li>
-        <li class="list-group-item">
-          <strong>Poblacion: </strong>
-          <span>{{country.population | number}}</span>
-        </li>
-        <li class="list-group-item">
-          <strong>Zona horaria: </strong>
-          <span>{{country.timezones}}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="row mt-4 description-country">
-      <h3 class="mb-4">Informacion adicional </h3>
-      <span class="description-country-span">
-        {{ country.translations['spa'].common }} es un pais que pertenece a la region de
-        {{ country.region }} y esta ubicado en la subregion de {{country.subregion}}. La capital de este pais es {{country.capital}}.
-      </span>
-    </div>
-  </div>
 </ng-container>
 <ng-template #elseTemplate>
-    Actualmente estas viendo tu ubicacion. Selecciona un pais para cargar la descripcion de ese pais.
+  <div class="row pb-2 animate__animated animate__delay-0.8s animate__fadeIn h-100">
+    <div class="container">
+      <div class="col p-3 border border-dark align-items-center d-flex h-100">
+        <p class="text-center text-secondary fs-5">Actualmente en el mapa estas viendo tu ubicacion. Selecciona un pais para cargar la descripcion.</p>
+      </div>
+    </div>
+  </div>
 </ng-template>
-

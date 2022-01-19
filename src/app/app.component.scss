@@ -1,1 +1,12 @@
 
+ // Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  .test{
+    height: 100%;
+  }
+
+  .test2{
+    height: calc(6.5vh + 97vw);
+    max-height: 40vh;
+  }
+}

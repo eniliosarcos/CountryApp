@@ -1,13 +1,24 @@
-.map-container {
-  position: relative;
-  height: calc(1.5vh + 60vw);
-  max-height: 500px;
+@media (max-width: 991.98px) {
+  .map-container {
+    position: relative;
+    height: calc(1.5vw + 35vh);
+    max-height: 31vh;
+  }
 }
 
-#map {
+@media (min-width: 992px) {
+
+  .map-container {
+    position: relative;
+    height: calc(1.5vh + 60vw);
+    max-height: 500px;
+  }
+ }
+
+ #map {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
-  border: 1px solid brown;
 }
+
