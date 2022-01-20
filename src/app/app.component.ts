@@ -26,5 +26,5 @@ export class AppComponent {
     this.countryServices.country$.next(this.countrySelected);
   }
 
-  title = 'CountriesApp';
+  title = 'Countries-App';
 }

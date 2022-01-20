@@ -1,38 +1,47 @@
 
 <ng-container *ngIf="news$ | async as news; else elseTemplate">
-  <div class="row animate__animated animate__delay-0.8s animate__fadeInRight">
-    <div class="col-12 news-container">
-      <ng-container *ngFor="let new of news">
-        <div class="row new-container" (click)="openNewInTab(new.url)">
-          <div class="new-container2">
+  <div class="row animate__animated animate__delay-0.8s animate__fadeIn row-container">
+    <div class="container h-100">
+      <div class="col border border-dark box-news">
+        <div class="row new-text mb-2" *ngFor="let new of news" (click)="openNewInTab(new.url)">
+          <div class="container-fluid new-card">
             <div class="col-3">
               <img src="{{new.urlToImage}}" alt="" class="img-thumbnail">
             </div>
-            <div class="col-9 title-text">
+            <div class="col-9">
               <div class="row">
                 <div class="col-12">
-                  <strong>Autor: </strong>
-                  <span>{{new.author || 'Anonimo'}}</span>
+                  <strong class="text-decoration-underline">Autor</strong>
+                  <span>: {{new.author || 'Anonimo'}}</span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <strong>Titulo: </strong>
-                  <span>{{new.title}}</span>
+                  <strong class="text-decoration-underline">Titulo</strong>
+                  <span>: {{new.title}}</span>
                 </div>
               </div>
             </div>
-            <div class="col-12 description-text">
-              <strong>Descripcion: </strong>
-              <span>{{new.description}}</span>
-              <!-- <a href="{{new.url}}" target="_blank">{{new.url}}</a> -->
+            <div class="col-12 text-secondary description">
+              <strong class="text-decoration-underline">Descripcion</strong>
+              <span>: {{new.description}}</span>
             </div>
           </div>
         </div>
-      </ng-container>
+      </div>
     </div>
   </div>
 </ng-container>
 <ng-template #elseTemplate>
-  <p>Selecciona un pais para ver las noticias</p>
+  <div
+    class="row pb-2 animate__animated animate__delay-0.8s animate__fadeIn h-100"
+  >
+  <div class="container">
+    <div class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100">
+      <p class="text-center text-secondary fs-5">
+        Debes seleccionar un pais para ver las noticias.
+      </p>
+    </div>
+  </div>
+</div>
 </ng-template>
