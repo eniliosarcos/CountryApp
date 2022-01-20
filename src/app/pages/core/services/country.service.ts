@@ -12,7 +12,7 @@ export class CountryService {
 
   BASE_URL = environment.countriesApi_URL;
 
-  country$ = new BehaviorSubject<CountryResponse | null>(null);
+  country$:BehaviorSubject<CountryResponse | null> = new BehaviorSubject<CountryResponse | null>(null);
 
   constructor(private http: HttpClient) {
   }
