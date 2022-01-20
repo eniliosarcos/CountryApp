@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { startWith, switchMap } from 'rxjs';
+import { filter} from 'rxjs';
 import { CountryService } from '../../core/services/country.service';
 
 @Injectable({
@@ -7,8 +7,10 @@ import { CountryService } from '../../core/services/country.service';
 })
 export class DescriptionService {
 
-  get descriptionCountry$(){
-    return this.countryService.country$;
+  get country$(){
+    return this.countryService.country$.pipe(
+      filter(country => !!Boolean(country)),
+    );
   }
 
   constructor(private countryService: CountryService) { }
