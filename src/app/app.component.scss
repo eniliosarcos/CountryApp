@@ -1,12 +1,16 @@
 
  // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
-  .test{
+  .row-content-height{
     height: 100%;
   }
 
-  .test2{
+  .col4-mobile-height{
     height: calc(6.5vh + 97vw);
     max-height: 40vh;
+  }
+
+  .col2-mobile-height{
+    height: 40px;
   }
 }
