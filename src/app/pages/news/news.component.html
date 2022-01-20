@@ -18,19 +18,7 @@
   </ng-container>
 
   <ng-container *ngIf="!state.loading && !state.news">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div
-          class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100"
-        >
-          <p
-            class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn"
-          >
-            Debes seleccionar un pais para ver las noticias.
-          </p>
-        </div>
-      </div>
-    </div>
+    <app-box-info [text]="boxtextInfo"></app-box-info>
   </ng-container>
 
   <ng-container *ngIf="state.loading && (!state.news || state.news)">

@@ -5,13 +5,12 @@
 
 .nav-link{
   border-radius: 0px !important;
+  font-weight: 600;
 
   .nav-link.active:hover{
     background-color: aqua;
   }
 }
-
-// font-size: clamp(10px, 1vw, 14px);
 
 button:hover{
   background-color: rgb(0, 77, 148);

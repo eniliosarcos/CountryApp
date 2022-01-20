@@ -9,6 +9,8 @@ import { WeatherService } from './services/weather.service';
 })
 export class WeatherComponent implements OnInit {
 
+  boxtextInfo:string = "Debes seleccionar un país para ver la información del clima."
+
   loading$ = new BehaviorSubject<boolean>(false);
   country$ = this.weatherService.country$;
   weatherData$ = this.country$.pipe(

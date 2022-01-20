@@ -10,6 +10,8 @@ import { NewsService } from './services/news.service';
 })
 export class NewsComponent implements OnInit {
 
+  boxtextInfo:string = "Debes seleccionar un país para ver las noticias."
+
   loading$ = new BehaviorSubject<boolean>(false);
 
   news$ = this.newService.newsCountry$.pipe(

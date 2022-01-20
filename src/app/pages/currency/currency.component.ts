@@ -10,6 +10,8 @@ import { CurrencyService } from './services/currency.service';
 })
 export class CurrencyComponent implements OnInit {
 
+  boxtextInfo:string = "Debes seleccionar un país para ver la información de la moneda."
+
   loading$ = new BehaviorSubject<boolean>(false);
 
   currenciesName$ = this.currencyService.country$.pipe(

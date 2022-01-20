@@ -19,7 +19,7 @@
                 />
               </div>
               <div class="col-8">
-                <h3>Informacion</h3>
+                <h3>Información</h3>
                 <ul class="list-group">
                   <li class="list-group-item">
                     <strong>Nombre oficial: </strong>
@@ -28,7 +28,7 @@
                     }}</span>
                   </li>
                   <li class="list-group-item">
-                    <strong>Poblacion: </strong>
+                    <strong>Población: </strong>
                     <span>{{
                       state.descriptionCountry.population | number
                     }}</span>
@@ -41,13 +41,13 @@
               </div>
             </div>
             <div class="row mt-4 description-country">
-              <h3 class="mb-4">Informacion adicional</h3>
+              <h3 class="mb-4">Información adicional</h3>
               <span class="description-country-span">
                 {{ state.descriptionCountry.translations["spa"].common }} es un
-                pais que pertenece a la region de
+                país que pertenece a la region de
                 {{ state.descriptionCountry.region }} y esta ubicado en la
-                subregion de {{ state.descriptionCountry.subregion }}. La
-                capital de este pais es {{ state.descriptionCountry.capital }}.
+                subregión de {{ state.descriptionCountry.subregion }}. La
+                capital de este país es {{ state.descriptionCountry.capital }}.
               </span>
             </div>
           </div>
@@ -57,20 +57,7 @@
   </ng-container>
 
   <ng-container *ngIf="!state.loading && !state.descriptionCountry">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div
-          class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100"
-        >
-          <p
-            class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn"
-          >
-            Actualmente en el mapa estas viendo tu ubicacion. Selecciona un pais
-            para cargar la descripcion.
-          </p>
-        </div>
-      </div>
-    </div>
+    <app-box-info [text]="boxtextInfo"></app-box-info>
   </ng-container>
 
   <ng-container
