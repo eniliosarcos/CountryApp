@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { CountryResponse } from '../interfaces/contries.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
+
+  BASE_URL = environment.countriesApi_URL;
 
   country$ = new BehaviorSubject<CountryResponse | null>(null);
 
@@ -16,7 +19,7 @@ export class CountryService {
 
   getCountries():Observable<CountryResponse[]>{
 
-    return this.http.get<CountryResponse[]>('https://restcountries.com/v3.1/all').pipe(
+    return this.http.get<CountryResponse[]>(this.BASE_URL).pipe(
       map(countries => {
         countries.sort((a,b)=>{
           if (a.name.common > b.name.common ) {
