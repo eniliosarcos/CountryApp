@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, map, switchMap, tap } from 'rxjs';
-import { CountryService } from '../core/services/country.service';
+import { BehaviorSubject, delay, filter, switchMap, tap } from 'rxjs';
 import { WeatherService } from './services/weather.service';
 
 @Component({
@@ -9,15 +8,17 @@ import { WeatherService } from './services/weather.service';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
-  weatherData$ = this.countryService.country$.pipe(
-    filter((country) => !!Boolean(country)),
-    switchMap((resp) =>
-      this.weatherService.getWeatherData(resp!.latlng[0], resp!.latlng[1])
-    )
+
+  loading$ = new BehaviorSubject<boolean>(false);
+  country$ = this.weatherService.country$;
+  weatherData$ = this.country$.pipe(
+    tap(() => this.loading$.next(true)),
+    delay(1000),
+    switchMap((resp) => this.weatherService.getWeatherData(resp!.latlng[0], resp!.latlng[1])),
+    tap(() => this.loading$.next(false))
   );
 
   constructor(
-    private countryService: CountryService,
     private weatherService: WeatherService
   ) {}
 
