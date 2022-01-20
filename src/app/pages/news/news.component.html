@@ -1,33 +1,11 @@
 <ng-container *ngIf="{news:news$ | async, loading: loading$ | async} as state;">
 
   <ng-container *ngIf="(!state.loading && state.news)">
-    <div class="row row-container h-100">
+    <div class="row row-container">
       <div class="container h-100">
         <div class="col border border-dark box-news">
-          <div class="row new-text mb-2 animate__animated animate__delay-0.8s animate__fadeIn" *ngFor="let new of state.news" (click)="openNewInTab(new.link)">
-            <div class="container-fluid new-card">
-              <div class="col-3">
-                <img src="{{new.media}}" alt="" class="img-thumbnail">
-              </div>
-              <div class="col-9">
-                <div class="row">
-                  <div class="col-12">
-                    <strong class="text-decoration-underline">Autor</strong>
-                    <span>: {{new.author || 'Anonimo'}}</span>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <strong class="text-decoration-underline">Titulo</strong>
-                    <span>: {{new.title}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 text-secondary description">
-                <strong class="text-decoration-underline">Descripcion</strong>
-                <span>: {{new.summary}}</span>
-              </div>
-            </div>
+          <div class="row cards-container mb-2 animate__animated animate__delay-0.8s animate__fadeIn" *ngFor="let new of state.news" (click)="openNewInTab(new.link)">
+            <app-new-card [new]="new"></app-new-card>
           </div>
         </div>
       </div>

@@ -1,0 +1,23 @@
+<div class="container-fluid new-card">
+  <div class="col-3">
+    <img src="{{new.media}}" alt="" class="img-thumbnail">
+  </div>
+  <div class="col-9 title">
+    <div class="row">
+      <div class="col-12">
+        <strong class="text-decoration-underline">Autor</strong>
+        <span>: {{new.author || 'Anonimo'}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <strong class="text-decoration-underline">Titulo</strong>
+        <span>: {{new.title}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 text-secondary description">
+    <strong class="text-decoration-underline">Descripcion</strong>
+    <span>: {{new.summary}}</span>
+  </div>
+</div>
