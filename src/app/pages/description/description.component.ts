@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, BehaviorSubject, delay } from 'rxjs';
+import { tap, BehaviorSubject, delay, Observable } from 'rxjs';
+import { CountryResponse } from '../core/interfaces/contries.interface';
 import { DescriptionService } from './services/description.service';
 
 
@@ -11,9 +12,11 @@ import { DescriptionService } from './services/description.service';
 })
 export class DescriptionComponent implements OnInit {
 
-  loading$ = new BehaviorSubject<boolean>(false);
+  boxtextInfo:string = "Actualmente en el mapa estas viendo tu ubicación. Selecciona un país para cargar la descripción."
 
-  descriptionCountry$ = this.descriptionService.country$.pipe(
+  loading$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  descriptionCountry$:Observable<CountryResponse | null> = this.descriptionService.country$.pipe(
     tap(() => this.loading$.next(true)),
     delay(1000),
     tap(() => this.loading$.next(false)),

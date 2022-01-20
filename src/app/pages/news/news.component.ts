@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { switchMap, tap, map, delay } from 'rxjs/operators';
+import { Article } from './interfaces/news.interface';
 import { NewsService } from './services/news.service';
 
 @Component({
@@ -10,12 +11,14 @@ import { NewsService } from './services/news.service';
 })
 export class NewsComponent implements OnInit {
 
-  loading$ = new BehaviorSubject<boolean>(false);
+  boxtextInfo:string = "Debes seleccionar un país para ver las noticias."
 
-  news$ = this.newService.newsCountry$.pipe(
+  loading$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  news$:Observable<Article[]> = this.newService.newsCountry$.pipe(
     tap(() => this.loading$.next(true)),
     delay(1000),
-    switchMap(resp => this.newService.getNews(resp!.translations['spa'].common)),
+    switchMap(country => this.newService.getNews(country!.translations['spa'].common)),
     map(({articles}) => articles),
     tap(() => this.loading$.next(false))
   )

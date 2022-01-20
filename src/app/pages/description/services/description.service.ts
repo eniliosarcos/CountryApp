@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { filter} from 'rxjs';
+import { filter, Observable} from 'rxjs';
+import { CountryResponse } from '../../core/interfaces/contries.interface';
 import { CountryService } from '../../core/services/country.service';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { CountryService } from '../../core/services/country.service';
 })
 export class DescriptionService {
 
-  get country$(){
+  get country$(): Observable<CountryResponse | null>{
     return this.countryService.country$.pipe(
       filter(country => !!Boolean(country)),
     );

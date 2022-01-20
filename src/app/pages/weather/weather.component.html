@@ -1,62 +1,53 @@
-<ng-container *ngIf="{weatherData:weatherData$ | async, loading: loading$ | async} as state;">
-
-  <ng-container *ngIf="(!state.loading && state.weatherData)">
+<ng-container
+  *ngIf="{
+    weatherData: weatherData$ | async,
+    loading: loading$ | async
+  } as state"
+>
+  <ng-container *ngIf="!state.loading && state.weatherData">
     <div class="row pb-2 h-100">
       <div class="container">
         <div class="col p-2 border border-dark h-100">
-
-            <div class="animate__animated animate__delay-0.8s animate__fadeIn">
-              <div class="col">
-                <h1>Ciudad: {{ state.weatherData.name }}</h1>
-                <h4>Clima: {{ state.weatherData.weather[0].main }}</h4>
-                <h4>
-                  Descripcion: {{ state.weatherData.weather[0].description
-                  }}<img [src]="iconWeather(state.weatherData.weather[0].icon)" alt="" width="40px" height="40px" />
-                </h4>
-              </div>
-              <hr />
-              <div class="col">
-                <h1>Temperatura {{ state.weatherData.main.temp }}°C</h1>
-                <h4>minima: {{ state.weatherData.main.temp_min }}°C</h4>
-                <h4>maxima: {{ state.weatherData.main.temp_max }}°C</h4>
-              </div>
-              <hr />
-              <div class="col">
-                <h5>Humedad: {{ state.weatherData.main.humidity }}%</h5>
-                <h5>Velocidad del viento: {{ state.weatherData.wind.speed }} m/s</h5>
-              </div>
+          <div class="animate__animated animate__delay-0.8s animate__fadeIn">
+            <div class="col">
+              <h1>Ciudad: {{ state.weatherData.name }}</h1>
+              <h4>Clima: {{ state.weatherData.weather[0].main }}</h4>
+              <h4>
+                Descripcion: {{ state.weatherData.weather[0].description
+                }}<img
+                  [src]="iconWeather(state.weatherData.weather[0].icon)"
+                  alt=""
+                  width="40px"
+                  height="40px"
+                />
+              </h4>
             </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="(!state.loading && !state.weatherData)">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100">
-          <p class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn">
-            Debes seleccionar un pais para ver la informacion del clima.
-          </p>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="(state.loading && (!state.weatherData || state.weatherData))">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div class="col p-3 border border-dark h-100">
-          <div class="fs-5 justify-content-center align-items-center flex-column d-flex animate__animated animate__delay-0.8s animate__fadeIn h-100">
-            <div class="spinner-border">
+            <hr />
+            <div class="col">
+              <h1>Temperatura {{ state.weatherData.main.temp }}°C</h1>
+              <h4>mínima: {{ state.weatherData.main.temp_min }}°C</h4>
+              <h4>máxima: {{ state.weatherData.main.temp_max }}°C</h4>
             </div>
-            <span>Cargando...</span>
+            <hr />
+            <div class="col">
+              <h5>Humedad: {{ state.weatherData.main.humidity }}%</h5>
+              <h5>
+                Velocidad del viento: {{ state.weatherData.wind.speed }} m/s
+              </h5>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </ng-container>
 
+  <ng-container *ngIf="!state.loading && !state.weatherData">
+    <app-box-info [text]="boxtextInfo"></app-box-info>
+  </ng-container>
 
+  <ng-container
+    *ngIf="state.loading && (!state.weatherData || state.weatherData)"
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </ng-container>
 </ng-container>
-

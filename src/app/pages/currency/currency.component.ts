@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, concatMap, delay, filter, forkJoin, map, tap } from 'rxjs';
-import { CountryService } from '../core/services/country.service';
+import { BehaviorSubject, concatMap, delay, forkJoin, map, Observable, tap } from 'rxjs';
 import { CurrencyService } from './services/currency.service';
 
 @Component({
@@ -10,20 +9,22 @@ import { CurrencyService } from './services/currency.service';
 })
 export class CurrencyComponent implements OnInit {
 
-  loading$ = new BehaviorSubject<boolean>(false);
+  boxtextInfo:string = "Debes seleccionar un país para ver la información de la moneda."
 
-  currenciesName$ = this.currencyService.country$.pipe(
+  loading$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  currenciesName$:Observable<object[]> = this.currencyService.country$.pipe(
     tap(() => this.loading$.next(true)),
     delay(1000),
     map(country =>  Object.values(country!.currencies!).map(currency => currency.name)),
     tap(() => this.loading$.next(false)),
   )
 
-  currencies$ = this.currencyService.country$.pipe(
+  currencies$:Observable<string[]> = this.currencyService.country$.pipe(
     map(country =>  Object.keys(country!.currencies!)),
   )
 
-  currenciesConverted$ = this.currencyService.country$.pipe(
+  currenciesConverted$:Observable<object[][]> = this.currencyService.country$.pipe(
     map(country =>  Object.keys(country!.currencies!)),
     concatMap(currencies => {
       const observables = currencies.map(currency => this.currencyService.getConvertedCurrencyValue(currency));
