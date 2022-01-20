@@ -1,55 +1,70 @@
-<ng-container *ngIf="{descriptionCountry:descriptionCountry$ | async, loading: loading$ | async} as state;">
-
-  <ng-container *ngIf="(!state.loading && state.descriptionCountry)">
-    <div
-    class="row pb-2 h-100"
-  >
-    <div class="container">
-      <div class="col p-2 border border-dark h-100">
-        <div class="animate__animated animate__delay-0.8s animate__fadeIn">
-          <div class="row">
-            <div class="col-4">
-              <h3>Bandera</h3>
-              <img class="img-thumbnail" [src]="state.descriptionCountry.flags.png" alt="" />
+<ng-container
+  *ngIf="{
+    descriptionCountry: descriptionCountry$ | async,
+    loading: loading$ | async
+  } as state"
+>
+  <ng-container *ngIf="!state.loading && state.descriptionCountry">
+    <div class="row pb-2 h-100">
+      <div class="container">
+        <div class="col p-2 border border-dark h-100">
+          <div class="animate__animated animate__delay-0.8s animate__fadeIn">
+            <div class="row">
+              <div class="col-4">
+                <h3>Bandera</h3>
+                <img
+                  class="img-thumbnail"
+                  [src]="state.descriptionCountry.flags.png"
+                  alt=""
+                />
+              </div>
+              <div class="col-8">
+                <h3>Informacion</h3>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <strong>Nombre oficial: </strong>
+                    <span>{{
+                      state.descriptionCountry.translations["spa"].official
+                    }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Poblacion: </strong>
+                    <span>{{
+                      state.descriptionCountry.population | number
+                    }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Zona horaria: </strong>
+                    <span>{{ state.descriptionCountry.timezones }}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="col-8">
-              <h3>Informacion</h3>
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <strong>Nombre oficial: </strong>
-                  <span>{{ state.descriptionCountry.translations["spa"].official }}</span>
-                </li>
-                <li class="list-group-item">
-                  <strong>Poblacion: </strong>
-                  <span>{{ state.descriptionCountry.population | number }}</span>
-                </li>
-                <li class="list-group-item">
-                  <strong>Zona horaria: </strong>
-                  <span>{{ state.descriptionCountry.timezones }}</span>
-                </li>
-              </ul>
+            <div class="row mt-4 description-country">
+              <h3 class="mb-4">Informacion adicional</h3>
+              <span class="description-country-span">
+                {{ state.descriptionCountry.translations["spa"].common }} es un
+                pais que pertenece a la region de
+                {{ state.descriptionCountry.region }} y esta ubicado en la
+                subregion de {{ state.descriptionCountry.subregion }}. La
+                capital de este pais es {{ state.descriptionCountry.capital }}.
+              </span>
             </div>
-          </div>
-          <div class="row mt-4 description-country">
-            <h3 class="mb-4">Informacion adicional</h3>
-            <span class="description-country-span">
-              {{ state.descriptionCountry.translations["spa"].common }} es un pais que pertenece a
-              la region de {{ state.descriptionCountry.region }} y esta ubicado en la subregion de
-              {{ state.descriptionCountry.subregion }}. La capital de este pais es
-              {{ state.descriptionCountry.capital }}.
-            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </ng-container>
 
-  <ng-container *ngIf="(!state.loading && !state.descriptionCountry)">
+  <ng-container *ngIf="!state.loading && !state.descriptionCountry">
     <div class="row pb-2 h-100">
       <div class="container">
-        <div class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100">
-          <p class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn">
+        <div
+          class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100"
+        >
+          <p
+            class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn"
+          >
             Actualmente en el mapa estas viendo tu ubicacion. Selecciona un pais
             para cargar la descripcion.
           </p>
@@ -58,17 +73,11 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(state.loading && (!state.descriptionCountry || state.descriptionCountry))">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div class="col p-3 border border-dark h-100">
-          <div class="fs-5 justify-content-center align-items-center flex-column d-flex animate__animated animate__delay-0.8s animate__fadeIn h-100">
-            <div class="spinner-border">
-            </div>
-            <span>Cargando...</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <ng-container
+    *ngIf="
+      state.loading && (!state.descriptionCountry || state.descriptionCountry)
+    "
+  >
+    <app-loading-spinner></app-loading-spinner>
   </ng-container>
 </ng-container>

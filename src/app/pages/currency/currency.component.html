@@ -1,26 +1,40 @@
-<ng-container *ngIf="{currenciesName:currenciesName$ | async,
-                                    loading: loading$ | async} as state;">
-
-  <ng-container *ngIf="(!state.loading && state.currenciesName)">
+<ng-container
+  *ngIf="{
+    currenciesName: currenciesName$ | async,
+    loading: loading$ | async
+  } as state"
+>
+  <ng-container *ngIf="!state.loading && state.currenciesName">
     <div class="row pb-2 h-100">
       <div class="container">
         <div class="col p-2 border border-dark h-100">
-          <div class="row mb-3 animate__animated animate__delay-0.8s animate__fadeIn" *ngFor="let currencyName of state.currenciesName; let i = index">
-            <div class="container-fluid animate__animated animate__delay-0.8s animate__fadeIn" *ngIf="currencies$ | async as currencies">
+          <div
+            class="row mb-3 animate__animated animate__delay-0.8s animate__fadeIn"
+            *ngFor="let currencyName of state.currenciesName; let i = index"
+          >
+            <div
+              class="container-fluid animate__animated animate__delay-0.8s animate__fadeIn"
+              *ngIf="currencies$ | async as currencies"
+            >
               <div class="col-12">
                 <h3>{{ currencyName }} - {{ currencies![i] }}</h3>
               </div>
               <div class="col-12 badge bg-success text-wrap">
                 <span>Valor del cambio a dolar de esta moneda</span>
               </div>
-              <div class="col-12 animate__animated animate__delay-0.8s animate__fadeIn" *ngIf="currenciesConverted$ | async as currenciesConverted">
+              <div
+                class="col-12 animate__animated animate__delay-0.8s animate__fadeIn"
+                *ngIf="currenciesConverted$ | async as currenciesConverted"
+              >
                 <div class="container">
                   <div class="row mt-3 exchange-row">
                     <div class="col exchange-value-text">
-                      <strong>{{ currencies![i] }}</strong>: 1
+                      <strong>{{ currencies![i] }}</strong
+                      >: 1
                     </div>
                     <div class="col exchange-value-text">
-                      <strong>USD</strong>: {{currenciesConverted[i][0] || 'N/A'}}
+                      <strong>USD</strong>:
+                      {{ currenciesConverted[i][0] || "N/A" }}
                     </div>
                   </div>
                   <div class="row mt-2 exchange-row">
@@ -28,7 +42,8 @@
                       <strong>USD</strong>: 1
                     </div>
                     <div class="col exchange-value-text">
-                      <strong>{{ currencies![i] }}</strong>: {{currenciesConverted[i][1] || 'N/A'}}
+                      <strong>{{ currencies![i] }}</strong
+                      >: {{ currenciesConverted[i][1] || "N/A" }}
                     </div>
                   </div>
                 </div>
@@ -40,11 +55,15 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(!state.loading && !state.currenciesName)">
+  <ng-container *ngIf="!state.loading && !state.currenciesName">
     <div class="row pb-2 h-100">
       <div class="container">
-        <div class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100">
-          <p class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn">
+        <div
+          class="col p-3 border border-dark align-items-center d-flex justify-content-center h-100"
+        >
+          <p
+            class="text-center text-secondary fs-5 animate__animated animate__delay-0.8s animate__fadeIn"
+          >
             Debes seleccionar un pais para ver la informacion de la moneda.
           </p>
         </div>
@@ -52,18 +71,9 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(state.loading && (!state.currenciesName || state.currenciesName))">
-    <div class="row pb-2 h-100">
-      <div class="container">
-        <div class="col p-3 border border-dark h-100">
-          <div class="fs-5 justify-content-center align-items-center flex-column d-flex animate__animated animate__delay-0.8s animate__fadeIn h-100">
-            <div class="spinner-border">
-            </div>
-            <span>Cargando...</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <ng-container
+    *ngIf="state.loading && (!state.currenciesName || state.currenciesName)"
+  >
+    <app-loading-spinner></app-loading-spinner>
   </ng-container>
 </ng-container>
-
