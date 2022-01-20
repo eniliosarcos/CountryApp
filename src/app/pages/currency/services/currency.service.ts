@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, map, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CountryService } from '../../core/services/country.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrencyService {
+
+  BASE_URL = environment.currenciesConvertAPI_URL;
+
   get country$(){
     return this.countryService.country$.pipe(
       filter(country => !!Boolean(country)),
@@ -21,7 +25,7 @@ export class CurrencyService {
 
   getConvertedCurrencyValue(currency:string){
 
-    return this.http.get(`https://free.currconv.com/api/v7/convert?q=${currency}_USD,USD_${currency}&compact=ultra&apiKey=5ead8ffabf4ef82ba5dd`)
+    return this.http.get(`${this.BASE_URL}/convert?q=${currency}_USD,USD_${currency}&compact=ultra&apiKey=5ead8ffabf4ef82ba5dd`)
   }
 
   getCurrencyNames(currency: string){
