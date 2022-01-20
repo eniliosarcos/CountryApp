@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -23,6 +23,9 @@ export class NewsService {
 
   getNews(countryName:string):Observable<NewsResponse>{
 
-    return this.http.get<NewsResponse>(`${this.BASE_URL}/everything?q=${countryName}&apiKey=5e55477be7b649fba66a4b59bf95c647`);
+    const headers = new HttpHeaders().set('x-api-key', 'JVOjT55hOQLvN8VCd1076vWV64FjiY6Pa5S4JEkEMbY');
+
+    return this.http.get<NewsResponse>(`https://api.newscatcherapi.com/v2/search?q=${countryName}`, {headers});
+    // return this.http.get<NewsResponse>(`${this.BASE_URL}/everything?q=${countryName}&apiKey=5e55477be7b649fba66a4b59bf95c647`);
   }
 }
