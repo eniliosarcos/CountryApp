@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, map, startWith, switchMap } from 'rxjs';
-import { CountryResponse } from '../core/interfaces/contries.interface';
-import { CountryService } from '../core/services/country.service';
+import { tap, BehaviorSubject, delay } from 'rxjs';
 import { DescriptionService } from './services/description.service';
 
 
@@ -13,7 +11,13 @@ import { DescriptionService } from './services/description.service';
 })
 export class DescriptionComponent implements OnInit {
 
-  descriptionCountry$ = this.descriptionService.descriptionCountry$;
+  loading$ = new BehaviorSubject<boolean>(false);
+
+  descriptionCountry$ = this.descriptionService.country$.pipe(
+    tap(() => this.loading$.next(true)),
+    delay(1000),
+    tap(() => this.loading$.next(false)),
+  );
 
   constructor(private descriptionService: DescriptionService) { }
 

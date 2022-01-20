@@ -1,6 +1,6 @@
 <ng-container *ngIf="{weatherData:weatherData$ | async, loading: loading$ | async} as state;">
 
-  <ng-container *ngIf="(state.weatherData)">
+  <ng-container *ngIf="(!state.loading && state.weatherData)">
     <div class="row pb-2 h-100">
       <div class="container">
         <div class="col p-2 border border-dark h-100">
@@ -43,7 +43,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="(state.loading && !state.weatherData)">
+  <ng-container *ngIf="(state.loading && (!state.weatherData || state.weatherData))">
     <div class="row pb-2 h-100">
       <div class="container">
         <div class="col p-3 border border-dark h-100">

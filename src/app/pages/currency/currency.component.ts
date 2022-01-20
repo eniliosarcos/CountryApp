@@ -16,6 +16,7 @@ export class CurrencyComponent implements OnInit {
     tap(() => this.loading$.next(true)),
     delay(1000),
     map(country =>  Object.values(country!.currencies!).map(currency => currency.name)),
+    tap(() => this.loading$.next(false)),
   )
 
   currencies$ = this.currencyService.country$.pipe(
@@ -23,14 +24,12 @@ export class CurrencyComponent implements OnInit {
   )
 
   currenciesConverted$ = this.currencyService.country$.pipe(
-    delay(500),
     map(country =>  Object.keys(country!.currencies!)),
     concatMap(currencies => {
       const observables = currencies.map(currency => this.currencyService.getConvertedCurrencyValue(currency));
       return forkJoin([...observables]);
     }),
     map(resp => resp.map(a => Object.values(a))),
-    tap(() => this.loading$.next(false)),
   )
 
   constructor(private currencyService: CurrencyService) { }

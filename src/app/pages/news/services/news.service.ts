@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { map, pluck } from 'rxjs/operators';
-import { CountryResponse } from '../../core/interfaces/contries.interface';
+import { filter } from 'rxjs/operators';
 import { CountryService } from '../../core/services/country.service';
-import { Article, NewsResponse } from '../interfaces/news.interface';
+import { NewsResponse } from '../interfaces/news.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,9 @@ import { Article, NewsResponse } from '../interfaces/news.interface';
 export class NewsService {
 
   get newsCountry$(){
-    return this.countryService.country$;
+    return this.countryService.country$.pipe(
+      filter(country => !!Boolean(country)),
+    );
   }
 
   constructor(private http: HttpClient, private countryService: CountryService) { }
