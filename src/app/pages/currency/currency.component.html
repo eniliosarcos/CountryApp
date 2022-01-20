@@ -20,7 +20,7 @@
                       <strong>{{ currencies![i] }}</strong>: 1
                     </div>
                     <div class="col exchange-value-text">
-                      <strong>USD</strong>: {{currenciesConverted[i][0]}}
+                      <strong>USD</strong>: {{currenciesConverted[i][0] || 'N/A'}}
                     </div>
                   </div>
                   <div class="row mt-2 exchange-row">
@@ -28,7 +28,7 @@
                       <strong>USD</strong>: 1
                     </div>
                     <div class="col exchange-value-text">
-                      <strong>{{ currencies![i] }}</strong>: {{currenciesConverted[i][1]}}
+                      <strong>{{ currencies![i] }}</strong>: {{currenciesConverted[i][1] || 'N/A'}}
                     </div>
                   </div>
                 </div>

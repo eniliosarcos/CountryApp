@@ -12,6 +12,7 @@ import { NewsResponse } from '../interfaces/news.interface';
 export class NewsService {
 
   BASE_URL = environment.newsApi_URL;
+  NEWS_API_KEY = environment.NEWS_API_KEY;
 
   get newsCountry$(){
     return this.countryService.country$.pipe(
@@ -23,9 +24,8 @@ export class NewsService {
 
   getNews(countryName:string):Observable<NewsResponse>{
 
-    const headers = new HttpHeaders().set('x-api-key', 'JVOjT55hOQLvN8VCd1076vWV64FjiY6Pa5S4JEkEMbY');
+    const headers = new HttpHeaders().set('x-api-key', this.NEWS_API_KEY);
 
     return this.http.get<NewsResponse>(`https://api.newscatcherapi.com/v2/search?q=${countryName}`, {headers});
-    // return this.http.get<NewsResponse>(`${this.BASE_URL}/everything?q=${countryName}&apiKey=5e55477be7b649fba66a4b59bf95c647`);
   }
 }

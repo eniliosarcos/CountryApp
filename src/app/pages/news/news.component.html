@@ -1,7 +1,7 @@
 <ng-container *ngIf="{news:news$ | async, loading: loading$ | async} as state;">
 
   <ng-container *ngIf="(!state.loading && state.news)">
-    <div class="row row-container">
+    <div class="row row-container h-100">
       <div class="container h-100">
         <div class="col border border-dark box-news">
           <div class="row new-text mb-2 animate__animated animate__delay-0.8s animate__fadeIn" *ngFor="let new of state.news" (click)="openNewInTab(new.link)">

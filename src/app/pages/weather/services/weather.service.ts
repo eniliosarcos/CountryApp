@@ -11,6 +11,7 @@ import { WeatherResponse } from '../interfaces/weather.interfaces';
 export class WeatherService {
 
   BASE_URL = environment.weatherAPI_URL;
+  WEATHER_API_KEY = environment.WEATHER_API_KEY;
 
   get country$(){
     return this.countryService.country$.pipe(
@@ -23,6 +24,6 @@ export class WeatherService {
   constructor(private http: HttpClient, private countryService:CountryService) { }
 
   getWeatherData(lat:number,lng:number):Observable<WeatherResponse>{
-    return this.http.get<WeatherResponse>(`${this.BASE_URL}/weather?lat=${lat}&lon=${lng}&units=metric&lang=sp&appid=8163a2cb081337e670c7e2cea1137140`);
+    return this.http.get<WeatherResponse>(`${this.BASE_URL}/weather?lat=${lat}&lon=${lng}&units=metric&lang=sp&appid=${this.WEATHER_API_KEY}`);
   }
 }
