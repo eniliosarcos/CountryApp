@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { CountryService } from '../../core/services/country.service';
 import { WeatherResponse } from '../interfaces/weather.interfaces';
 
@@ -10,7 +10,9 @@ import { WeatherResponse } from '../interfaces/weather.interfaces';
 export class WeatherService {
 
   get country$(){
-    return this.countryService.country$;
+    return this.countryService.country$.pipe(
+      filter(country => !!Boolean(country)),
+    );
   }
 
   weatherData!: WeatherResponse;
